@@ -1,7 +1,8 @@
 
 	let initialForm = document.createElement("form");
 	initialForm.id = initialForm;
-	let formDiv = document.createElement("div");
+    let formDiv = document.createElement("div");
+    formDiv.id = "formDiv";
 
 	let label1 = document.createElement("label");
 	label1.innerText = "Columns";
@@ -83,8 +84,10 @@ function createTable(rows, cols)
     let table = document.createElement("table");
     table.id = "main_table";
     table.style.border = "1px solid #000";
-    table.style.height = String(30 * (rows + 1)) + "px";
-    table.style.width = String(60 * (cols + 1)) + "px";
+    //table.style.height = String(30 * (rows + 1)) + "px";
+    //table.style.width = String(60 * (cols + 1)) + "px";
+	table.style.width = "100 %";
+	table.style.height = rows*10 + "%";
     for (let i = 0; i < rows; i++)
     {
         let row = createRow(i + 1, cols);
@@ -105,8 +108,8 @@ function main()
         return false;
     }
 
-    let formDiv = document.getElementById("formDiv");
-    formDiv = "display: none;";
+    //let formDiv = document.getElementById("formDiv");
+    document.getElementById("formDiv").style.display = "none";
     
     let table = createTable(rows, columns);
     document.getElementById("initialForm").appendChild(table);
