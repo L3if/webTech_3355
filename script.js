@@ -139,6 +139,9 @@ document.body.style.backgroundColor = getRandomColor();
 
 function main()
 {
+    functionsBlock = document.createElement('div');
+    functionsBlock.id = 'functionsBlock';
+    document.body.appendChild(functionsBlock);
 	var rows = document.getElementById('Row_Num').value;
 	var columns = document.getElementById('Col_Num').value;
 	
@@ -223,7 +226,7 @@ function main()
     changeTableBorder.appendChild(sel);
     changeTableBorder.appendChild(document.createElement("br"));
     changeTableBorder.appendChild(btn);
-    document.body.appendChild(changeTableBorder);
+    document.getElementById('functionsBlock').appendChild(changeTableBorder);
 
     //Change header
     // container 'change header;
@@ -272,7 +275,7 @@ function main()
     addHeader.appendChild(inp);
     addHeader.appendChild(document.createElement("br"));
     addHeader.appendChild(btn);
-    document.body.appendChild(addHeader);
+    document.getElementById('functionsBlock').appendChild(addHeader);
 
     //remove rows
     let removeRow = document.createElement("div");
@@ -319,7 +322,90 @@ function main()
     removeRow.appendChild(inp);
     removeRow.appendChild(document.createElement("br"));
     removeRow.appendChild(btn);
-    document.body.appendChild(removeRow);
+    document.getElementById('functionsBlock').appendChild(removeRow);
 
+     // Magic
+     let magic = document.createElement("div");
+     magic.style.float = "left";
+     magic.style.margin = "5px";
+ 
+     lbl = document.createElement("label");
+     lbl.innerText = "Magic!";
+ 
+     btn = document.createElement("button");
+     btn.type = "button";
+     btn.innerText = "Magic!!!";
+     btn.addEventListener("click", function(event) {
+         let chc = randomInteger(1, 4);
+         
+         let l = document.getElementById("main_table").childNodes;
+         let lowRowIndex = l[0].id == "header_row" ? 1 : 0;
+         let highRowIndex = l.length - 1;
+         let rw = randomInteger(lowRowIndex, highRowIndex);
+ 
+         let cl = l[rw].childNodes;
+         let ci = randomInteger(0, cl.length - 1);
+         let c = cl[ci];
+ 
+         if (chc > 2)
+         {
+             getRandomColor();
+             randomInteger();
+             c.style.background = getRandomColor();
+             c.style.fontSize = String(randomInteger(15, 25)) + "px";
+         }
+         else
+         {
+             let colID = c.id.split("col");
+             let txtID = colID.join("txt");
+             let btnID = colID.join("btn");
+             let divID = colID.join("div");
+ 
+             let div = document.createElement("div");
+             let txt = document.createElement("textarea");
+             txt.style.resize = "none";
+             txt.id = txtID;
+             
+             let btn = document.createElement("button");
+             btn.type = "button";
+             btn.innerText = "save";
+             btn.id = btnID;
+             btn.addEventListener("click", function(event) {
+                 saveInput(this.id);
+             });
+         
+             div.appendChild(txt);
+             div.innerHTML += "<br/>";
+             div.id = divID;
+             div.appendChild(btn);
+ 
+             c.innerText = "";
+             c.appendChild(div);
+         }  
+     });
+ 
+     magic.appendChild(lbl);
+     magic.appendChild(document.createElement("br"));
+     magic.appendChild(btn);
+     document.getElementById('functionsBlock').appendChild(magic);
+ 
+     //Remove Table
+     let removeTable = document.createElement("div");
+     removeTable.style.float = "left";
+     removeTable.style.margin = "5px";
+ 
+     btn = document.createElement("button");
+     btn.type = "submit";
+     btn.innerText = "Remove";
+     btn.addEventListener("click", function(event) {
+         document.getElementById("formDiv").style.display = "block";
+         document.body.removeChild(document.getElementById("functionsBlock"));
+         let initialForm = document.getElementById("initialForm");
+         initialForm.removeChild(document.getElementById("main_table"));
+     });
+ 
+     removeTable.appendChild(btn);
+     document.getElementById('functionsBlock').appendChild(removeTable);
+    
 }
  //test string for vs studio code commits
