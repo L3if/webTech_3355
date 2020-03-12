@@ -120,7 +120,22 @@ function saveInput(btnID)
     col.innerText = txt.value;
     div.style = "display: none;";
 }
+function randomInteger(min, max) 
+{
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+}
 
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += randomInteger(0, letters.length - 1);
+    }
+    return color;
+}
+
+document.body.style.backgroundColor = getRandomColor();
 
 function main()
 {
@@ -209,6 +224,57 @@ function main()
     changeTableBorder.appendChild(document.createElement("br"));
     changeTableBorder.appendChild(btn);
     document.body.appendChild(changeTableBorder);
+
+    //Change header
+    // container 'change header;
+    let addHeader = document.createElement("div");
+    addHeader.style.float = "left";
+    addHeader.style.margin = "5px";
+
+    lbl = document.createElement("label");
+    lbl.innerText = "Add Header to Table";
+
+    let inp = document.createElement("input");
+    inp.type = "text";
+    inp.id = "inp_header";
+    inp.value = "Header";
+
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerText = "Change Header"
+    btn.addEventListener("click", function(event) {
+        let headCol = document.getElementById("table_header");
+        if (headCol === null)
+        {
+            let headRow = document.getElementById("main_table").insertRow(0);
+            headRow.style.width = document.getElementById("main_table").style.width;
+            headRow.style.textAlign = "center";
+            headRow.id = "header_row";
+            
+            headCol = document.createElement("td");
+            headCol.style.textAlign = "center";
+            headCol.innerText = document.getElementById("inp_header").value;
+            headCol.colSpan = document.getElementById("Col_Num").value;
+            headCol.id = "table_header";
+            
+            headRow.appendChild(headCol);
+        }
+        else
+        {
+            headCol.innerText = document.getElementById("inp_header").value;
+        }
+        
+        
+    });
+
+    addHeader.appendChild(lbl);
+    addHeader.appendChild(document.createElement("br"));
+    addHeader.appendChild(inp);
+    addHeader.appendChild(document.createElement("br"));
+    addHeader.appendChild(btn);
+    document.body.appendChild(addHeader);
+
     
+
 }
  //test string for vs studio code commits
