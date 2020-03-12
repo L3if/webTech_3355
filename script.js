@@ -274,7 +274,52 @@ function main()
     addHeader.appendChild(btn);
     document.body.appendChild(addHeader);
 
-    
+    //remove rows
+    let removeRow = document.createElement("div");
+    removeRow.style.float = "left";
+    removeRow.style.margin = "5px";
+
+    lbl = document.createElement("label");
+    lbl.innerText = "Remove String";
+
+    inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = "1";
+    inp.id = "strToRemove";
+
+    btn = document.createElement("button");
+    btn.type = "button"
+    btn.innerText = "Remove";
+
+    btn.addEventListener("click", function(event) {
+        let tb = document.getElementById("main_table");
+        let l = tb.childNodes;
+        let i = Number(document.getElementById("strToRemove").value);
+        if (l[0].id != "header_row")
+        {
+            i--;
+            if (i < 0 || i >= l.length)
+            {
+                alert("Wrong row index!");
+                return;
+            }
+        }
+        else if (i < 1 || i >= l.length)
+        {
+            alert("Wrong row index!");
+            return;
+        }
+
+        let r = l[i];
+        tb.removeChild(r);
+    });
+
+    removeRow.appendChild(lbl);
+    removeRow.appendChild(document.createElement("br"));
+    removeRow.appendChild(inp);
+    removeRow.appendChild(document.createElement("br"));
+    removeRow.appendChild(btn);
+    document.body.appendChild(removeRow);
 
 }
  //test string for vs studio code commits
