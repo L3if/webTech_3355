@@ -38,6 +38,21 @@
 	initialForm.appendChild(formDiv);
 document.body.appendChild(initialForm);
 
+function createBordersDropdown()
+{
+    let borderStyles = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"];
+    let sel = document.createElement("select");
+    borderStyles.forEach(function(item) {
+        let opt = document.createElement("option");
+        opt.value = item;
+        opt.innerText = item;
+        sel.appendChild(opt);
+    });
+
+    return sel;
+}
+
+
 function createRow(row_num, cols)
 {
     let row = document.createElement("tr");
@@ -97,6 +112,16 @@ function createTable(rows, cols)
     return table;
 }
 
+function saveInput(btnID)
+{
+    let txt = document.getElementById("txt" + btnID.split("btn")[1]);
+    let div = document.getElementById("div" + btnID.split("btn")[1]);
+    let col = document.getElementById("col" + btnID.split("btn")[1]);
+    col.innerText = txt.value;
+    div.style = "display: none;";
+}
+
+
 function main()
 {
 	var rows = document.getElementById('Row_Num').value;
@@ -115,6 +140,75 @@ function main()
     document.getElementById("initialForm").appendChild(table);
     let fb = document.createElement("div");
     fb.id = "func_block";
-	
+    
+    //change table border`
+    let changeTableBorder = document.createElement("div");
+    changeTableBorder.style.float = "left";
+    changeTableBorder.style.margin = "5px";
+
+    let lbl = document.createElement("label");
+    lbl.innerText = "Change Table Borders";
+
+    let thick = document.createElement("input");
+    thick.id = "input_thick";
+    thick.type = "text";
+    thick.value = table.style.width.split("px")[0];
+    // restrict non-digit input
+    thick.onkeypress = function(event) {
+        return (event.keyCode >= 48 && event.keyCode <= 57 && this.value.length <= 2);
+    }
+    // change button text
+    thick.onkeyup = function(event) {
+        let s = this.value || 0;
+        let b = document.getElementById("apply_btn");
+        let l = b.innerText.split(" ");
+        if (l.length > 1)
+        {
+            l[1] = s + "px";
+            b.innerText = l.join(" ");
+        }
+        else
+        {
+            b.innerText = "Apply " + s + "px and border " + document.getElementById("sel_border").value;
+        }
+
+    }
+
+    // select border style
+    let sel = createBordersDropdown();
+    sel.id = "sel_border";
+    sel.onchange = function(event) {
+        let b = document.getElementById("apply_btn");
+        let l = b.innerText.split(" ");
+        if (l.length > 1)
+        {
+            l[4] = this.value;
+            b.innerText = l.join(" ");
+        }
+        else
+        {
+            b.innerText = "Apply " + document.getElementById("input_thick").value + "px and border " + this.value;
+        }
+    };
+
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "apply_btn";
+    btn.innerText = "Apply";
+    btn.addEventListener("click", function(event) {
+        let t = document.getElementById("main_table");
+        t.style.border = document.getElementById("sel_border").value;
+        t.style.width = document.getElementById("input_thick").value + "px";
+    });
+
+    // fill up 'change table borders' container
+    changeTableBorder.appendChild(lbl);
+    changeTableBorder.appendChild(document.createElement("br"));
+    changeTableBorder.appendChild(thick);
+    changeTableBorder.appendChild(sel);
+    changeTableBorder.appendChild(document.createElement("br"));
+    changeTableBorder.appendChild(btn);
+    document.body.appendChild(changeTableBorder);
+    
 }
  //test string for vs studio code commits
