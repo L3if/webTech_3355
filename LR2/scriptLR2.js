@@ -130,7 +130,7 @@ function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
     for (var i = 0; i < 6; i++) {
-      color += randomInteger(0, letters.length - 1);
+      color += letters[randomInteger(0, letters.length - 1)];
     }
     return color;
 }
