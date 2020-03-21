@@ -20,8 +20,24 @@ $(document).ready(function () {
     AddEmoji('SecondTaskLinks');
     httpToHttps('SecondTaskLinks');
 
+    document.body.appendChild(createTable(5,2));
+
+    
+    $("#btn_1_2").click(function(){
+        $("#div_1_1").fadeOut();
+      });
+    
+    $("#btn_2_2").click(function(){
+        $("#div_2_1").hide();
+      });
+
 
 });
+
+function alert()
+{
+    $("#div_1_1").fadeOut();
+};
 
 function DisableForm()
 {
@@ -95,3 +111,63 @@ function ReverseButtonFunc()
     
 }
 
+function createTable(rows, cols)
+{
+    let table = document.createElement("table");
+    table.id = "main_table";
+    table.style.border = "1px solid #000";
+	table.style.width = "50 %";
+	table.style.height = rows*10 + "%";
+    for (let i = 0; i < rows; i++)
+    {
+        let row = createRow(i + 1, cols);
+
+        table.appendChild(row);
+    }
+    
+    return table;
+}
+
+function createRow(row_num, cols)
+{
+    let row = document.createElement("tr");
+    row.id = "row_" + String(row_num);
+
+    for (let i = 0; i < cols; i++)
+    {
+        let colID = ["col", String(row_num), String(i + 1)].join("_");
+        let txtID = ["txt", String(row_num), String(i + 1)].join("_");
+        let divID = ["div", String(row_num), String(i + 1)].join("_");
+        let btnID = ["btn", String(row_num), String(i + 1)].join("_");
+        let col = document.createElement("td");
+        
+        if (i === 0)
+        {
+            let txt = document.createElement("div");
+        txt.innerText = "JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией языка ECMAScript (стандарт ECMA-262[6]). JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.<p>Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам."
+        txt.style.resize = "none";
+        txt.id = divID;
+        
+        col.appendChild(txt);
+        col.id = colID;
+        col.style = "border: 1px solid #000; width: 40%; height = 30px;"
+
+        row.appendChild(col);
+        }
+        else
+        {
+            let btn = document.createElement("button");
+            btn.id = btnID;
+            btn.innerHTML = btnID;
+                        
+            col.appendChild(btn);
+            col.id = colID;
+            col.style = "border: 1px solid #000; width: 60px; height = 30px;"
+    
+            row.appendChild(col);
+        }
+        
+    }
+
+    return row;
+}
