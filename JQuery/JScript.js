@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     //$("h2").hide();
     
-    //неревод элементов в disabled
+    //перевод элементов в disabled
     //alert('после алерта применятся стили');
     DisableForm();
 
@@ -20,16 +20,26 @@ $(document).ready(function () {
     AddEmoji('SecondTaskLinks');
     httpToHttps('SecondTaskLinks');
 
-    document.body.appendChild(createTable(5,2));
+    document.body.appendChild(createTable(3,2));
 
     
-    $("#btn_1_2").click(function(){
-        $("#div_1_1").fadeOut();
-      });
+    $("#btn_1_2").click(function()
+    {
+        $("#div_1_1").fadeToggle();
+    });
     
-    $("#btn_2_2").click(function(){
-        $("#div_2_1").hide();
-      });
+    $("#btn_2_2").click(function()
+    {
+        $("#div_2_1").toggle();
+    });
+
+    $("#btn_3_2").click(function()
+    {
+        $("#div_3_1").slideToggle();
+    });
+
+    AJAX();
+
 
 
 });
@@ -80,7 +90,7 @@ function CreateLinks2Task()
     ReverseButton.style.position = 'fixed';
     ReverseButton.style.right = "10px";
 
-    document.body.prepend(ReverseButton)
+    document.body.prepend(ReverseButton);
 
 
 }
@@ -144,7 +154,7 @@ function createRow(row_num, cols)
         if (i === 0)
         {
             let txt = document.createElement("div");
-        txt.innerText = "JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией языка ECMAScript (стандарт ECMA-262[6]). JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.<p>Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам."
+        txt.innerText = "JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией языка ECMAScript (стандарт ECMA-262[6]). JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений. Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам."
         txt.style.resize = "none";
         txt.id = divID;
         
@@ -170,4 +180,22 @@ function createRow(row_num, cols)
     }
 
     return row;
+}
+
+function AJAX()
+{
+    let AjaxBtn = document.createElement("button")
+    AjaxBtn.type = 'button';
+    AjaxBtn.innerText = 'AJAX';
+    AjaxBtn.onclick = AJAXButtonFunc;
+    AjaxBtn.style.position = 'fixed';
+    AjaxBtn.style.right = "10px";
+    AjaxBtn.style.bottom = "10px";
+
+    document.body.append(AjaxBtn);
+}
+
+function AJAXButtonFunc()
+{
+    $("body").load( "https://inxaoc.github.io/example/ajax-1.html")
 }
