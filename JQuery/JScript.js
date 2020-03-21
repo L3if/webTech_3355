@@ -22,7 +22,8 @@ $(document).ready(function () {
 
     document.body.appendChild(createTable(3,2));
 
-    
+    AJAX();
+
     $("#btn_1_2").click(function()
     {
         $("#div_1_1").fadeToggle();
@@ -38,15 +39,36 @@ $(document).ready(function () {
         $("#div_3_1").slideToggle();
     });
 
-    AJAX();
-
-
-
 });
 
-function alert()
+function AJAXButtonFunc()
 {
-    $("#div_1_1").fadeOut();
+    alert('ASD');
+    $.getJSON( "https://inxaoc.github.io/example/ajax.json", function( data )
+        {
+            //let buildDiv = document.createElement('div');
+            //buildDiv.innerHTML.write());
+            document.w(build(data));
+        });
+
+    //$("body").load( "https://inxaoc.github.io/example/ajax-1.html")
+    
+}
+
+function build(list) {
+        var html = '', item, deep;
+        for (item in list) {
+            deep = typeof list[item] == 'object';
+            html += '<li><a href="' +(deep ? '#' : list[item])+ '">' +item+ '</a>' +(deep ? build(list[item]) : '')+ '</li>';
+        }
+        return '<ul>' + html + '</ul>';
+    }
+    
+
+function GetInnerKeys(object)
+{
+    let keys = [];
+    keys = Object.keys(object)
 };
 
 function DisableForm()
@@ -186,16 +208,13 @@ function AJAX()
 {
     let AjaxBtn = document.createElement("button")
     AjaxBtn.type = 'button';
+    AjaxBtn.id = 'AjaxBtn';
     AjaxBtn.innerText = 'AJAX';
     AjaxBtn.onclick = AJAXButtonFunc;
     AjaxBtn.style.position = 'fixed';
-    AjaxBtn.style.right = "10px";
+    AjaxBtn.style.left = "10px";
     AjaxBtn.style.bottom = "10px";
 
     document.body.append(AjaxBtn);
 }
 
-function AJAXButtonFunc()
-{
-    $("body").load( "https://inxaoc.github.io/example/ajax-1.html")
-}
