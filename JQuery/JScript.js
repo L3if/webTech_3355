@@ -46,9 +46,9 @@ function AJAXButtonFunc()
     alert('ASD');
     $.getJSON( "https://inxaoc.github.io/example/ajax.json", function( data )
         {
-            //let buildDiv = document.createElement('div');
-            //buildDiv.innerHTML.write());
-            document.w(build(data));
+            let buildDiv = document.createElement('div');
+            buildDiv.innerHTML+= (build(data));
+            document.body.appendChild(buildDiv);
         });
 
     //$("body").load( "https://inxaoc.github.io/example/ajax-1.html")
@@ -59,7 +59,8 @@ function build(list) {
         var html = '', item, deep;
         for (item in list) {
             deep = typeof list[item] == 'object';
-            html += '<li><a href="' +(deep ? '#' : list[item])+ '">' +item+ '</a>' +(deep ? build(list[item]) : '')+ '</li>';
+        
+            html += '<li><a>' +item+ '</a>' +(deep ? build(list[item]) : '')+ '</li>';
         }
         return '<ul>' + html + '</ul>';
     }
