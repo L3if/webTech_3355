@@ -84,11 +84,9 @@ function httpToHttps(Selectedclass)
 
 function ReverseButtonFunc()
 {
-    alert();
     $('.SecondTaskLinks').removeAttr("target");
     $('.SecondTaskLinks').each(function()
     {
-        alert(this.id);
         document.getElementById(this.id).innerText= document.getElementById(this.id).innerText.replace(String.fromCodePoint(0x2197),'');
         
     })
