@@ -43,7 +43,6 @@ $(document).ready(function () {
 
 function AJAXButtonFunc()
 {
-    alert('ASD');
     $.getJSON( "https://inxaoc.github.io/example/ajax.json", function( data )
         {
             let buildDiv = document.createElement('div');
