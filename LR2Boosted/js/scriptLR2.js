@@ -1,5 +1,4 @@
-
-	let initialForm = document.createElement("form");
+    let initialForm = document.createElement("form");
     initialForm.id = initialForm;
     initialForm.style.width = "70%";
     initialForm.classList.add("mx-auto");
@@ -9,8 +8,6 @@
     formDiv.classList.add("mx-auto");
     formDiv.classList.add("form-group");
     //formDiv.classList.add("justify-content-md-center");
-    
-
 	let label1 = document.createElement("label");
 	label1.innerText = "Columns";
 	initialForm.id = "initialForm";
@@ -44,15 +41,29 @@
     okButton.classList.add("btn-primary");
     okButton.type = "button";
 	okButton.innerText = "Paehali";
-	okButton.onclick = main;
+    okButton.onclick = main;
+    //okButton.onclick = tryGet;
 	formDiv.appendChild(okButton);
 	initialForm.appendChild(formDiv);
-document.body.appendChild(initialForm);
+    document.body.appendChild(initialForm);
+
+function tryGet()
+{
+    //window.open("https://ya.ru");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "../LR2/LR2.html", false ); // false for synchronous request
+    xmlHttp.send();
+    document.write(xmlHttp.responseText);
+    
+    return xmlHttp.responseText;
+}
 
 function createBordersDropdown()
 {
     let borderStyles = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"];
     let sel = document.createElement("select");
+    sel.classList.add("mx-auto");
+    sel.classList.add("custom-select");
     borderStyles.forEach(function(item) {
         let opt = document.createElement("option");
         opt.value = item;
@@ -83,6 +94,8 @@ function createRow(row_num, cols)
         
         let txt = document.createElement("textarea");
         txt.classList.add("input-group-text");
+        txt.classList.add("mx-auto");
+        txt.classList.add("my-1");
         txt.style.resize = "none";
         txt.id = txtID;
         
@@ -90,6 +103,8 @@ function createRow(row_num, cols)
         btn.type = "button";
         btn.classList.add("btn");
         btn.classList.add("btn-dark");
+        btn.classList.add("mx-auto");
+        btn.classList.add("my-1")
         btn.innerText = "save";
         btn.id = btnID;
         btn.addEventListener("click", function(event) {
@@ -114,6 +129,11 @@ function createRow(row_num, cols)
 function createTable(rows, cols)
 {
     let table = document.createElement("div");
+    let tableHeader = document.createElement("div");
+    tableHeader.classList.add("mx-auto");
+    tableHeader.innerText = "Header";
+    tableHeader.id = 'tableHeader';
+    table.appendChild(tableHeader);
     table.id = "main_table";
     //table.style.border = "1px solid #000";
     //table.style.height = String(30 * (rows + 1)) + "px";
@@ -151,11 +171,25 @@ function getRandomColor() {
     }
     return color;
 }
+function invertColor(hexTripletColor) {
+    var color = hexTripletColor;
+    color = color.substring(1); // remove #
+    color = parseInt(color, 16); // convert to integer
+    color = 0xFFFFFF ^ color; // invert three bytes
+    color = color.toString(16); // convert to hex
+    color = ("000000" + color).slice(-6); // pad with leading zeros
+    color = "#" + color; // prepend #
+    return color;
+}
 
-document.body.style.backgroundColor = getRandomColor();
+bodyColor = getRandomColor();
+document.body.style.backgroundColor = bodyColor;
+invertedBodyColor = invertColor(bodyColor);
+
+
 
 function main()
-{
+{   
     functionsBlock = document.createElement('div');
     functionsBlock.id = 'functionsBlock';
     
@@ -268,8 +302,8 @@ function main()
     btn.type = "button";
     btn.innerText = "Change Header"
     btn.addEventListener("click", function(event) {
-        let headCol = document.getElementById("initialForm");
-        if (headCol === null)
+        let headCol = document.getElementById("tableHeader");
+        /*if (headCol === null)
         {
             let headRow = document.getElementById("main_table").insertRow(0);
             headRow.style.width = document.getElementById("main_table").style.width;
@@ -284,7 +318,7 @@ function main()
             
             headRow.prependChild(headCol);
         }
-        else
+        else*/
         {
             headCol.innerText = document.getElementById("inp_header").value;
         }
@@ -430,4 +464,10 @@ function main()
      document.getElementById('functionsBlock').appendChild(removeTable);
     
 }
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+    document.getElementById('footer').style.color = invertedBodyColor;
+});
+
  //test string for vs studio code commits
