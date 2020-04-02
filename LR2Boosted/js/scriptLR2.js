@@ -129,7 +129,7 @@ function createRow(row_num, cols)
 function createTable(rows, cols)
 {
     let table = document.createElement("div");
-    let tableHeader = document.createElement("div");
+    let tableHeader = document.createElement("h1");
     tableHeader.classList.add("mx-auto");
     tableHeader.innerText = "Header";
     tableHeader.id = 'tableHeader';
@@ -276,11 +276,24 @@ function main()
     });
 
     // fill up 'change table borders' container
+    lbl.classList.add("input-group-text");
+    lbl.classList.add("mx-auto");
+    lbl.classList.add("my-1");
     changeTableBorder.appendChild(lbl);
-    changeTableBorder.appendChild(document.createElement("br"));
+    //changeTableBorder.appendChild(document.createElement("br"));
+    thick.classList.add("input-group-text");
+    thick.classList.add("mx-auto");
+    thick.classList.add("my-1");
     changeTableBorder.appendChild(thick);
+    sel.classList.add("input-group-text");
+    sel.classList.add("mx-auto");
+    sel.classList.add("my-1");
     changeTableBorder.appendChild(sel);
-    changeTableBorder.appendChild(document.createElement("br"));
+    //changeTableBorder.appendChild(document.createElement("br"));
+    btn.classList.add("btn-secondary");
+    btn.classList.add("btn");
+    btn.classList.add("mx-auto");
+    btn.classList.add("my-1");
     changeTableBorder.appendChild(btn);
     document.getElementById('functionsBlock').appendChild(changeTableBorder);
 
@@ -326,10 +339,18 @@ function main()
         
     });
 
+    lbl.classList.add("input-group-text");
+    lbl.classList.add("mx-auto");
+    lbl.classList.add("my-1");
     addHeader.appendChild(lbl);
-    addHeader.appendChild(document.createElement("br"));
+    inp.classList.add("input-group-text");
+    inp.classList.add("mx-auto");
+    inp.classList.add("my-1");
     addHeader.appendChild(inp);
-    addHeader.appendChild(document.createElement("br"));
+    btn.classList.add("btn");
+    btn.classList.add("btn-secondary");
+    btn.classList.add("mx-auto");
+    btn.classList.add("my-1");
     addHeader.appendChild(btn);
     document.getElementById('functionsBlock').appendChild(addHeader);
 
@@ -369,14 +390,22 @@ function main()
             return;
         }
 
-        let r = l[i];
+        let r = l[i+1];
         tb.removeChild(r);
     });
 
+    lbl.classList.add("input-group-text");
+    lbl.classList.add("mx-auto");
+    lbl.classList.add("my-1");
     removeRow.appendChild(lbl);
-    removeRow.appendChild(document.createElement("br"));
+    inp.classList.add("input-group-text");
+    inp.classList.add("mx-auto");
+    inp.classList.add("my-1");
     removeRow.appendChild(inp);
-    removeRow.appendChild(document.createElement("br"));
+    btn.classList.add("btn");
+    btn.classList.add("btn-secondary");
+    btn.classList.add("mx-auto");
+    btn.classList.add("my-1");
     removeRow.appendChild(btn);
     document.getElementById('functionsBlock').appendChild(removeRow);
 
@@ -439,9 +468,15 @@ function main()
              c.appendChild(div);
          }  
      });
- 
+     
+     lbl.classList.add("input-group-text");
+     lbl.classList.add("mx-auto");
+     lbl.classList.add("my-1");
      magic.appendChild(lbl);
-     magic.appendChild(document.createElement("br"));
+     btn.classList.add("btn");
+     btn.classList.add("btn-secondary");
+     btn.classList.add("mx-auto");
+     btn.classList.add("my-1");
      magic.appendChild(btn);
      document.getElementById('functionsBlock').appendChild(magic);
  
@@ -452,6 +487,10 @@ function main()
  
      btn = document.createElement("button");
      btn.type = "submit";
+     btn.classList.add("btn");
+     btn.classList.add("btn-secondary");
+     btn.classList.add("mx-auto");
+     btn.classList.add("my-1");
      btn.innerText = "Remove";
      btn.addEventListener("click", function(event) {
          document.getElementById("formDiv").style.display = "block";
@@ -467,7 +506,9 @@ function main()
 
 $( document ).ready(function() {
     console.log( "ready!" );
-    document.getElementById('footer').style.color = invertedBodyColor;
+    document.getElementById('footer').style.backgroundColor = invertedBodyColor;
+    document.getElementById('footer').style.color = bodyColor;
+
 });
 
  //test string for vs studio code commits
