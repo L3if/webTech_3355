@@ -60,7 +60,6 @@ function goToParamPage()
     var ind1 = url .lastIndexOf('/');
     var ind2 = url .lastIndexOf('.');
     new_url = url.substring(0,ind1+1 )+ mystring + url.substring(ind2 );
-    alert(new_url );
     window.location = new URL(new_url);
 }
 
