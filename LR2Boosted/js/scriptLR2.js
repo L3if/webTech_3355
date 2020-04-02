@@ -40,12 +40,29 @@
     okButton.classList.add("btn");
     okButton.classList.add("btn-primary");
     okButton.type = "button";
-	okButton.innerText = "Paehali";
-    okButton.onclick = main;
+    okButton.innerText = "Paehali";
+    okButton.onclick = goToParamPage;
+    //okButton.onclick = main;
     //okButton.onclick = tryGet;
+
 	formDiv.appendChild(okButton);
 	initialForm.appendChild(formDiv);
     document.body.appendChild(initialForm);
+
+function goToParamPage()
+{
+    let parsedUrl= new URL(location.protocol + '//' + location.host + location.pathname);
+    parsedUrl.searchParams.set('col',inputForm1.value);
+    parsedUrl.searchParams.set('row',inputForm2.value);
+    console.log(parsedUrl.href);
+    var url = parsedUrl.href;
+    var mystring = "table";
+    var ind1 = url .lastIndexOf('/');
+    var ind2 = url .lastIndexOf('.');
+    new_url = url.substring(0,ind1+1 )+ mystring + url.substring(ind2 );
+    alert(new_url );
+    window.location = new URL(new_url);
+}
 
 function tryGet()
 {
