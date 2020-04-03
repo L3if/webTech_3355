@@ -261,6 +261,12 @@ document.body.appendChild(functionsBlock);
 if (rows == 0 || columns == 0)
 {
     alert("not zero plz");
+    let alertDiv = document.createElement("div");
+    alertDiv.classList.add("alert");
+    alertDiv.classList.add("alert-danger");
+    alertDiv.role = "alert";
+    alertDiv.innerText="Wrong parameters given.";
+    document.body.appendChild(alertDiv);
     return false;
 }
 
@@ -269,6 +275,7 @@ if (rows == 0 || columns == 0)
 //document.getElementById("formDiv").style.display = "none";
 
 let table = createTable(rows, columns);
+table.style.minWidth = "600px";
 document.getElementById("initialForm").appendChild(table);
 let fb = document.createElement("div");
 fb.id = "func_block";
@@ -278,7 +285,8 @@ let changeTableBorder = document.createElement("div");
 changeTableBorder.style.float = "left";
 changeTableBorder.style.margin = "5px";
 
-let lbl = document.createElement("label");
+let lbl = document.createElement("h5");
+lbl.classList.add("Card-title");
 lbl.innerText = "Change Table Borders";
 
 let thick = document.createElement("input");
@@ -336,7 +344,7 @@ btn.addEventListener("click", function(event) {
 });
 
 // fill up 'change table borders' container
-lbl.classList.add("input-group-text");
+
 lbl.classList.add("mx-auto");
 lbl.classList.add("my-1");
 changeTableBorder.appendChild(lbl);
@@ -354,16 +362,19 @@ btn.classList.add("btn-secondary");
 btn.classList.add("btn");
 btn.classList.add("mx-auto");
 btn.classList.add("my-1");
+changeTableBorder.classList.add("card");
 changeTableBorder.appendChild(btn);
+
 document.getElementById('functionsBlock').appendChild(changeTableBorder);
 
 //Change header
 // container 'change header;
 let addHeader = document.createElement("div");
+addHeader.classList.add('card');
 addHeader.style.float = "left";
 addHeader.style.margin = "5px";
 
-lbl = document.createElement("label");
+lbl = document.createElement("h5");
 lbl.innerText = "Add Header to Table";
 
 let inp = document.createElement("input");
@@ -399,7 +410,7 @@ btn.addEventListener("click", function(event) {
     
 });
 
-lbl.classList.add("input-group-text");
+lbl.classList.add("card-title");
 lbl.classList.add("mx-auto");
 lbl.classList.add("my-1");
 addHeader.appendChild(lbl);
@@ -416,10 +427,12 @@ document.getElementById('functionsBlock').appendChild(addHeader);
 
 //remove rows
 let removeRow = document.createElement("div");
+removeRow.classList.add("card");
 removeRow.style.float = "left";
 removeRow.style.margin = "5px";
 
-lbl = document.createElement("label");
+lbl = document.createElement("h5");
+lbl.classList.add("card-title");
 lbl.innerText = "Remove String";
 
 inp = document.createElement("input");
@@ -454,7 +467,6 @@ btn.addEventListener("click", function(event) {
     tb.removeChild(r);
 });
 
-lbl.classList.add("input-group-text");
 lbl.classList.add("mx-auto");
 lbl.classList.add("my-1");
 removeRow.appendChild(lbl);
@@ -471,11 +483,17 @@ document.getElementById('functionsBlock').appendChild(removeRow);
 
  // Magic
  let magic = document.createElement("div");
+ magic.classList.add("card");
  magic.style.float = "left";
  magic.style.margin = "5px";
 
- lbl = document.createElement("label");
+ lbl = document.createElement("h5");
+ lbl.classList.add("card-title");
  lbl.innerText = "Magic!";
+
+ let txt = document.createElement("p");
+ txt.classList.add("card-text");
+ txt.innerText = "Do some random stuff to table above";
 
  btn = document.createElement("button");
  btn.type = "button";
@@ -529,10 +547,10 @@ document.getElementById('functionsBlock').appendChild(removeRow);
      }  
  });
  
- lbl.classList.add("input-group-text");
  lbl.classList.add("mx-auto");
  lbl.classList.add("my-1");
  magic.appendChild(lbl);
+ magic.appendChild(txt);
  btn.classList.add("btn");
  btn.classList.add("btn-secondary");
  btn.classList.add("mx-auto");
