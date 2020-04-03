@@ -64,7 +64,14 @@ function createBreadcrumb()
         {
             let currPathItem = document.createElement('li');
             currPathItem.classList.add('breadcrumb-item');
-            currPathItem.innerText = pathArr[i];
+            //currPathItem.innerText = pathArr[i];
+            currPathItemLink = document.createElement('a');
+            uplevelPath = pathArr.slice(0, i+1).join('/') + "/index.html";
+            let newUrl = new URL(window.location);
+            newUrl.pathname = uplevelPath;
+            currPathItemLink.href = newUrl;
+            currPathItemLink.innerText = pathArr[i];
+            currPathItem.appendChild(currPathItemLink);
             breadcrumbOl.appendChild(currPathItem);
         } else
         {
