@@ -551,12 +551,11 @@ document.getElementById('functionsBlock').appendChild(removeRow);
  btn.classList.add("btn-secondary");
  btn.classList.add("mx-auto");
  btn.classList.add("my-1");
- btn.innerText = "Remove";
+ btn.innerText = "Wipe Table";
  btn.addEventListener("click", function(event) {
-     document.getElementById("formDiv").style.display = "block";
-     document.body.removeChild(document.getElementById("functionsBlock"));
-     let initialForm = document.getElementById("initialForm");
-     initialForm.removeChild(document.getElementById("main_table"));
+    let table = createTable(rows, columns);
+    document.getElementById("initialForm").removeChild(document.getElementById("initialForm").firstChild);
+    document.getElementById("initialForm").appendChild(table);
  });
 
  removeTable.appendChild(btn);
