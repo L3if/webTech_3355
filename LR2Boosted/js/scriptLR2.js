@@ -39,17 +39,51 @@
 	okButton.id = "okButton";
     okButton.classList.add("btn");
     okButton.classList.add("btn-primary");
+    okButton.classList.add("my-1");
+    okButton.classList.add("mx-1");
     okButton.type = "button";
     okButton.innerText = "Paehali";
     okButton.onclick = goToParamPage;
     //okButton.onclick = main;
     //okButton.onclick = tryGet;
 
-	formDiv.appendChild(okButton);
+    //create button group element
+    let btnGroup = document.createElement('div');
+    btnGroup.classList.add("btn-group");
+    btnGroup.role = "group";
+    let btnMap = document.createElement("button");
+    btnMap.classList.add("btn");
+    btnMap.classList.add("btn-secondary");
+    let btnMaplink = document.createElement('a');
+    btnMaplink.innerText = "Map";
+    btnMaplink.href = "Map.html"
+    btnMap.appendChild(btnMaplink);
+    let btnTask = document.createElement("button");
+    btnTask.classList.add("btn");
+    btnTask.classList.add("btn-secondary");
+    let btnTasklink = document.createElement('a');
+    btnTasklink.innerText = "Task";
+    btnTasklink.href = "Task.html"
+    btnTask.appendChild(btnTasklink);
+    let btnCont = document.createElement("button");
+    btnCont.classList.add("btn");
+    btnCont.classList.add("btn-secondary");
+    let btnContlink = document.createElement('a');
+    btnContlink.innerText = "Contact";
+    btnContlink.href = "Contact.html"
+    btnCont.appendChild(btnContlink);
+
+    btnGroup.appendChild(btnMap);
+    btnGroup.appendChild(btnTask);
+    btnGroup.appendChild(btnCont);
+    
+    formDiv.appendChild(okButton);
+    formDiv.appendChild(btnGroup);
 	initialForm.appendChild(formDiv);
     document.body.appendChild(initialForm);
     
 document.getElementById("nav_container").appendChild(createBreadcrumb());
+
 
 function createBreadcrumb()
 {
